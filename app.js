@@ -16,6 +16,8 @@ app.use(morgan("tiny"));
 
 // PUG
 app.set('view engine', 'pug');
+
+// Assets
 app.use(express.static(__dirname + "/assets"));
 
 const itemRoutes = require("./routes");

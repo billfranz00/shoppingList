@@ -1,3 +1,15 @@
 .uppercase {
 	text-transform: uppercase;
 }
+
+.no-dec {
+	text-decoration: none;
+}
+
+.red {
+	color: red;
+}
+
+.margin-left {
+	margin-left: 10px;
+}

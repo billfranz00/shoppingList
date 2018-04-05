@@ -2,6 +2,7 @@ extends index.pug
 
 block content
 	h2 Check it out:
-	each item in shoppingList
-		ul
+	ul
+		each item in shoppingList
 			li #{item.name}: $#{item.price}
+				a(class="red no-dec margin-left" href=`/items/${item.id}`) &rArr; &rArr;
