@@ -1,0 +1,11 @@
+extends index.pug
+
+block content
+	h2.uppercase Search Page
+
+	h4 You have #{shoppingList.length} Items in your Shopping List
+
+	form(method="POST" action="/items/:id")
+		label Find an Item by Order
+		input(class="margin-left" type="number" name="position" placeholder="Position in Your list")
+		button(class="margin-left" type="submit") Find the Item

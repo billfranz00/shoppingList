@@ -18,6 +18,10 @@
 	margin-top: 10px;
 }
 
+.margin-bottom-big {
+	margin-bottom: 25px;
+}
+
 .button {
 	border: 5px solid green;
 	background-color: black;

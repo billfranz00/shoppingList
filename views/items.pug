@@ -7,8 +7,9 @@ block content
 			each item in shoppingList
 				li #{item.name}: $#{item.price}
 					a(class="red no-dec margin-left" href=`/items/${item.id}`) &rArr; &rArr;
-		form(class="margin-top" method="POST" action="/items?_method=DELETE")
+		form(class="margin-top margin-bottom-big" method="POST" action="/items?_method=DELETE")
 			button(type="submit") Remove 
 				span.uppercase everything!!!
+		a(class="button" href="/items/search") Search for an Item
 	else
 		a(class="button no-dec red" href="/items/new") Add an Item to your Empty List

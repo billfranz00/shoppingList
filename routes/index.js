@@ -47,8 +47,13 @@ router
 	});
 
 // /items/new
-router.get("/new", function(req, res) { // Add New Item Form
+router.get("/new", function(req, res, next) { // Add New Item Form
 	return res.render("newItem");
+});
+
+// /items/search
+router.get("/search", (req, res, next) => { // Search for item
+	return res.render("search", {shoppingList});
 });
 
 // /items/:id
@@ -58,6 +63,11 @@ router
 		const item = shoppingList.find(val => val.id === Number(req.params.id));
 		console.log(item);
 		return res.render("item", {item}); // {item} --> {item: item}
+	})
+	.post((req, res, next) => {
+		const item = shoppingList[req.body.position - 1];
+		console.log(item);
+		return res.render("item", {item});
 	})
 	.patch((req, res, next) => {
 		const item = shoppingList.find(val => val.id === Number(req.params.id));
