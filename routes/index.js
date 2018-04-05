@@ -26,10 +26,10 @@ const shoppingList = [
 ];
 var id = 5;
 
-// All Items Page
+// /items
 router
 	.route("")
-	.get((req, res, next) => {
+	.get((req, res, next) => { // All Items Page
 		return res.render("items", {shoppingList});
 	})
 	.post((req, res, next) => {
@@ -42,18 +42,39 @@ router
 		return res.redirect("/items");
 	});
 
-// Add New Item Form
-router.get("/new", function(req, res) {
+// /items/new
+router.get("/new", function(req, res) { // Add New Item Form
 	return res.render("newItem");
 });
 
-// Single Item Page
+// /items/:id
 router
 	.route("/:id")
-	.get((req, res, next) => {
+	.get((req, res, next) => { // Single Item Page
 		const item = shoppingList.find(val => val.id === Number(req.params.id));
 		console.log(item);
 		return res.render("item", {item}); // {item} --> {item: item}
 	})
+	.patch((req, res, next) => {
+		const item = shoppingList.find(val => val.id === Number(req.params.id));
+		if(req.body.name !== "") {
+			item.name = req.body.name;
+		}
+		if(req.body.price !== "") {
+			item.price = req.body.price;
+		}
+		return res.redirect(`./${item.id}`)
+	})
+	.delete((req, res, next) => {
+		const itemIndex = shoppingList.findIndex(val => val.id === Number(req.params.id));
+		shoppingList.splice(itemIndex, 1);
+		return res.redirect("/items")
+	});
+
+// /items/:id/edit
+router.get("/:id/edit", (req, res, next) => { // Edit Single Item Page
+	const item = shoppingList.find(val => val.id === Number(req.params.id));
+	return res.render("editItem", {item});
+});
 
 module.exports = router;

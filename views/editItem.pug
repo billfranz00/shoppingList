@@ -1,0 +1,13 @@
+extends index.pug
+
+block content
+	h3 Change those properties of the bomb #{item.name} you had on your list&hellip;
+	h5 Original Price: 
+		span.red $#{item.price}
+	form(method="POST" action=`/items/${item.id}?_method=PATCH`)
+		input(type="text" name="name" placeholder="Edit the name...")
+		input(type="number" name="price" placeholder="Change the price...")
+		button(type="submit") BrosMit
+	form(class="margin-top" method="POST" action=`/items/${item.id}?_method=DELETE`)
+		label Just get rid of me entirely &hellip; :(
+		button(class="red margin-left" type="submit") Get Rid Of It
