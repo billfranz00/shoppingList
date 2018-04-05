@@ -2,7 +2,13 @@ extends index.pug
 
 block content
 	h2 Check it out:
-	ul
-		each item in shoppingList
-			li #{item.name}: $#{item.price}
-				a(class="red no-dec margin-left" href=`/items/${item.id}`) &rArr; &rArr;
+	if shoppingList.length > 0
+		ul
+			each item in shoppingList
+				li #{item.name}: $#{item.price}
+					a(class="red no-dec margin-left" href=`/items/${item.id}`) &rArr; &rArr;
+		form(class="margin-top" method="POST" action="/items?_method=DELETE")
+			button(type="submit") Remove 
+				span.uppercase everything!!!
+	else
+		a(class="button no-dec red" href="/items/new") Add an Item to your Empty List

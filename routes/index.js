@@ -33,12 +33,16 @@ router
 		return res.render("items", {shoppingList});
 	})
 	.post((req, res, next) => {
-		console.log(req.body);
 		shoppingList.push({
 			name: req.body.name,
 			price: req.body.price,
 			id: id++
 		}); // Add item to shopping list
+		return res.redirect("/items");
+	})
+	.delete((req, res, next) => {
+		shoppingList.splice(0, shoppingList.length);
+		console.log(shoppingList.length);
 		return res.redirect("/items");
 	});
 

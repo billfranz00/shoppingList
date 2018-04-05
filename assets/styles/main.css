@@ -17,3 +17,11 @@
 .margin-top {
 	margin-top: 10px;
 }
+
+.button {
+	border: 5px solid green;
+	background-color: black;
+	font-weight: bold;
+	font-size: 20px;
+	border-radius: 5%;
+}
