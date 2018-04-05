@@ -42,9 +42,18 @@ router
 		return res.redirect("/items");
 	});
 
-// Item Form
+// Add New Item Form
 router.get("/new", function(req, res) {
 	return res.render("newItem");
 });
+
+// Single Item Page
+router
+	.route("/:id")
+	.get((req, res, next) => {
+		const item = shoppingList.find(val => val.id === Number(req.params.id));
+		console.log(item);
+		return res.render("item", {item}); // {item} --> {item: item}
+	})
 
 module.exports = router;
