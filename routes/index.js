@@ -42,7 +42,6 @@ router
 	})
 	.delete((req, res, next) => {
 		shoppingList.splice(0, shoppingList.length);
-		console.log(shoppingList.length);
 		return res.redirect("/items");
 	});
 
@@ -61,13 +60,17 @@ router
 	.route("/:id")
 	.get((req, res, next) => { // Single Item Page
 		const item = shoppingList.find(val => val.id === Number(req.params.id));
-		console.log(item);
 		return res.render("item", {item}); // {item} --> {item: item}
 	})
 	.post((req, res, next) => {
-		const item = shoppingList[req.body.position - 1];
-		console.log(item);
-		return res.render("item", {item});
+		if(req.body.position !== "") {
+			var item = shoppingList[req.body.position - 1];
+		}
+		else {
+			var name = req.body.name.toLowerCase();
+			var item = shoppingList.find(val => val.name.toLowerCase() === name);
+		}
+		return res.redirect(`./${item.id}`);
 	})
 	.patch((req, res, next) => {
 		const item = shoppingList.find(val => val.id === Number(req.params.id));
@@ -77,7 +80,7 @@ router
 		if(req.body.price !== "") {
 			item.price = req.body.price;
 		}
-		return res.redirect(`./${item.id}`)
+		return res.redirect(`./${item.id}`);
 	})
 	.delete((req, res, next) => {
 		const itemIndex = shoppingList.findIndex(val => val.id === Number(req.params.id));

@@ -6,6 +6,13 @@ block content
 	h4 You have #{shoppingList.length} Items in your Shopping List
 
 	form(method="POST" action="/items/:id")
-		label Find an Item by Order
-		input(class="margin-left" type="number" name="position" placeholder="Position in Your list")
-		button(class="margin-left" type="submit") Find the Item
+		label Find an Item by Order - 
+			span.primary First Priority 
+		| (search by order overrides search by name)
+		input(id="positionTest" class="margin-left" type="number" name="position" placeholder="Position in Your list")
+		br
+		label Find an Item by Name - 
+			span.secondary Second Priority
+		input(class="margin-left" type="text" name="name" placeholder="Name of Item...")
+		br
+		button(type="submit") Find the Item

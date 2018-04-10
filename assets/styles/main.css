@@ -10,6 +10,15 @@
 	color: red;
 }
 
+.primary {
+	color: turquoise;
+	font-weight: bold;
+}
+
+.secondary {
+	color: orange;
+}
+
 .margin-left {
 	margin-left: 10px;
 }
